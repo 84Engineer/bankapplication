@@ -11,12 +11,16 @@ import com.luxoft.bankapp.model.ClientExistsException;
 import com.luxoft.bankapp.model.IllegalArgumentException;
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AddClientCommand implements Command {
 
+    @Autowired
+    public BankCommanderSpring bc;
+    
 	@Override
 	public void execute() {
-		if (BankCommander.currentBank == null) {
+		if (bc.currentBank == null) {
 			System.out.println("Bank is not set.");
 			return;
 		}
@@ -25,7 +29,7 @@ public class AddClientCommand implements Command {
 		System.out.println("To quit type \"quit\".");
 		System.out.println("Input client's name and surname: ");
 		while (true) {
-			clientName = BankCommander.sc.nextLine();
+			clientName = bc.sc.nextLine();
 			checkForQuit(clientName);
 			if (clientName == null)
 				continue;
@@ -48,7 +52,7 @@ public class AddClientCommand implements Command {
 				System.out.println(i + ") " + genderToSelect);
 				i++;
 			}
-			String option = BankCommander.sc.nextLine();
+			String option = bc.sc.nextLine();
 			checkForQuit(option);
 			if (option == null)
 				continue;
@@ -74,7 +78,7 @@ public class AddClientCommand implements Command {
 		String clientEmail;
 		System.out.println("Input client's email:");
 		while (true) {
-			clientEmail = BankCommander.sc.nextLine();
+			clientEmail = bc.sc.nextLine();
 			checkForQuit(clientEmail);
 			if (clientName == null)
 				continue;
@@ -89,7 +93,7 @@ public class AddClientCommand implements Command {
 		String clientTelNumber;
 		System.out.println("Input client phone number:");
 		while (true) {
-			clientTelNumber = BankCommander.sc.nextLine();
+			clientTelNumber = bc.sc.nextLine();
 			checkForQuit(clientTelNumber);
 			if (clientTelNumber == null)
 				continue;
@@ -142,7 +146,7 @@ public class AddClientCommand implements Command {
 		bs.setActiveAccount(client, account);
 		
 		try {
-			bs.addClient(BankCommander.currentBank, client);
+			bs.addClient(bc.currentBank, client);
 		} catch (ClientExistsException e) {
 			System.out.println(e.getMessage());
 			System.out.println("Operation failed.");

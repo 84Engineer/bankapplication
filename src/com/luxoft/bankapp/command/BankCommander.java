@@ -16,7 +16,6 @@ import com.luxoft.bankapp.model.SavingAccount;
 import com.luxoft.bankapp.model.Client.Gender;
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
-import com.luxoft.bankapp.service.FindClientCommand;
 import com.luxoft.bankapp.service.TaskHelper;
 
 public class BankCommander {

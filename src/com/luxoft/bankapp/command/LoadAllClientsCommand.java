@@ -7,6 +7,7 @@ package com.luxoft.bankapp.command;
 
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -14,12 +15,15 @@ import com.luxoft.bankapp.service.BankServiceImpl;
  */
 public class LoadAllClientsCommand implements Command {
 
+    @Autowired
+    public BankCommanderSpring bc;
+
     @Override
     public void execute() {
         /*String clientName;
         System.out.println("Input client's name: ");
         while (true) {
-            clientName = BankCommander.sc.nextLine();
+            clientName = bc.sc.nextLine();
             if (clientName == null) {
                 continue;
             }
@@ -28,7 +32,7 @@ public class LoadAllClientsCommand implements Command {
 
         BankService bs = new BankServiceImpl();
         try {
-            bs.loadAllClients(BankCommander.currentBank);
+            bs.loadAllClients(bc.currentBank);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

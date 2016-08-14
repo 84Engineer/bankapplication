@@ -7,6 +7,7 @@ package com.luxoft.bankapp.command;
 
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -14,16 +15,19 @@ import com.luxoft.bankapp.service.BankServiceImpl;
  */
 public class SaveClientCommand implements Command {
 
+    @Autowired
+    public BankCommanderSpring bc;
+
     @Override
     public void execute() {
-        if (BankCommander.currentClient == null) {
+        if (bc.currentClient == null) {
             System.out.println("Client is not set.");
             return;
         }
 
         BankService bs = new BankServiceImpl();
         try {
-            bs.saveClient(BankCommander.currentClient);
+            bs.saveClient(bc.currentClient);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

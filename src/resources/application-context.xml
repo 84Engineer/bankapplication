@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:annotation-config/>
+    
+    <bean id="bankCommander" class="com.luxoft.bankapp.command.BankCommanderSpring" autowire="byType">
+        <property name="commandMap">
+            <map>
+                <entry key="1">
+                    <bean class="com.luxoft.bankapp.command.FindClientCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="2">
+                    <bean class="com.luxoft.bankapp.command.GetAccountCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="3">
+                    <bean class="com.luxoft.bankapp.command.DepositCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="4">
+                    <bean class="com.luxoft.bankapp.command.WithdrawCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="5">
+                    <bean class="com.luxoft.bankapp.command.TransferCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="6">
+                    <bean class="com.luxoft.bankapp.command.AddClientCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="7">
+                    <bean class="com.luxoft.bankapp.command.FeedCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="8">
+                    <bean class="com.luxoft.bankapp.command.SaveClientCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="9">
+                    <bean class="com.luxoft.bankapp.command.LoadClientCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="10">
+                    <bean class="com.luxoft.bankapp.command.SaveAllClientsCommand" autowire="byType"/>                    
+                </entry>
+                <entry key="11">
+                    <bean class="com.luxoft.bankapp.command.LoadAllClientsCommand" autowire="byType"/>                    
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

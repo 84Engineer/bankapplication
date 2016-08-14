@@ -88,6 +88,7 @@ public class Bank implements Report {
             }
         }
         clients.add(client);
+        System.out.println(this);
 
         for (ClientRegistrationListener listener : listeners) {
             listener.onClientAdded(client);

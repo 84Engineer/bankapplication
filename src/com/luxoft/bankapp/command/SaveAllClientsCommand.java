@@ -9,6 +9,7 @@ import com.luxoft.bankapp.model.Client;
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -16,14 +17,17 @@ import java.util.Set;
  */
 public class SaveAllClientsCommand implements Command {
 
+    @Autowired
+    public BankCommanderSpring bc;
+
     @Override
     public void execute() {
-        /*if (BankCommander.currentClient == null) {
+        /*if (bc.currentClient == null) {
             System.out.println("Client is not set.");
             return;
         }*/
 
-        Set<Client> clients = BankCommander.currentBank.getClients();
+        Set<Client> clients = bc.currentBank.getClients();
 
         BankService bs = new BankServiceImpl();
         for (Client client : clients) {

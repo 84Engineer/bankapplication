@@ -9,6 +9,7 @@ import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.BankServiceImpl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -16,11 +17,14 @@ import java.util.logging.Logger;
  */
 public class FeedCommand implements Command {
 
+    @Autowired
+    public BankCommanderSpring bc;
+
     @Override
     public void execute() {
         BankService bs = new BankServiceImpl();
         try {
-            bs.loadClients(BankCommander.currentBank);
+            bs.loadClients(bc.currentBank);
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
